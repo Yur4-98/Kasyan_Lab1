@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -143,6 +143,7 @@
     <ClCompile Include="Interface_console.c" />
     <ClCompile Include="Main.c" />
     <ClCompile Include="Matrix.c" />
+    <ClCompile Include="tests.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="complex.h" />

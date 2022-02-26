@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "Interface.h"
 
-//#include "complex.h"
+
 #include "matrix.h"
 
 // проверка утечек памяти
@@ -15,8 +15,10 @@ int main(void)
 {
 
   //  printf("Hello world! \n");
-    dialog();
-    
+    //dialog();
+    test_float();
+    test_complex();
+
     scanf("%*c");
     _CrtDumpMemoryLeaks();
     return 0;

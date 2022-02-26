@@ -3,7 +3,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-//#include <readline/readline.h>
+
 
 void dialog() 
 {
@@ -28,8 +28,10 @@ void dialog()
 			switch (input)
 			{
 			case 1:
+				free_M(m1);
 				printf("Enter matrix1\n");
 				m1 = input_M();
+				free_M(m2);
 				printf("Enter matrix2\n");
 				m2 = input_M();
 				break;
@@ -56,12 +58,15 @@ void dialog()
 			switch (input)
 			{
 			case 1:
+				free_M(m3);
 				m3 = sum_m(m1, m2);
 				break;
 			case 2:
+				free_M(m3);
 				m3 = mult_m(m1, m2);
 				break;
 			case 3:
+				free_M(m3);
 				m3 = transposition(m1);
 				break;
 			default:

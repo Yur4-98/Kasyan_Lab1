@@ -4,15 +4,13 @@ struct Complex {
     float Im;
 };
 
-struct Complex* the_zero;
 
-struct Complex Zero_C() {
-    if (!the_zero) {
-        the_zero = malloc(sizeof(struct Complex));
-        the_zero->Re = 0;
-        the_zero->Im = 0;
-    }
-    return *the_zero;
+
+struct Complex *Zero_C() {
+    struct Complex* the_zero = malloc(sizeof(struct Complex));
+    the_zero->Re = 0;
+    the_zero->Im = 0;
+    return the_zero;
 }
 
 
@@ -49,4 +47,5 @@ struct Complex *mult_c(struct Complex *c1, struct Complex *c2) {
     struct Complex* res = malloc(sizeof(struct Complex));
     res->Re = c1->Re * c2->Re - c1->Im * c2->Im;
     res->Im = c1->Re * c2->Im + c1->Im * c2->Re;
+    return res;
 }

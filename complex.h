@@ -11,7 +11,7 @@ Complex;
 */
 struct Complex* input_C();
 void output_C(struct Complex* c);
-struct Complex Zero_C();
+struct Complex* Zero_C();
 float GetRe(struct Complex c);
 float GetIm(struct Complex c);
 struct Complex* sum_c(struct Complex* c1, struct Complex* c2);

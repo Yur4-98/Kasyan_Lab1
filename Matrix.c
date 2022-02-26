@@ -1,5 +1,5 @@
 #include <stdio.h>
-//#include <conio.h>
+
 #include "complex.h"
 
 enum M_type
@@ -46,6 +46,7 @@ void* mult(void *x, void* y, enum M_type type) {
         *(float*)res = ((*(float*)x * *(float*)y));
         break;
     case C:
+        //res = (struct Complex*)malloc(sizeof(struct Complex));
         (struct Complex*)res = mult_c((struct Complex*)x, (struct Complex*)y);
         break;
     default:
@@ -65,8 +66,8 @@ void* Zero(enum M_type type) {
         *(float*)zero = 0;
         break;
     case C:
-        (struct Complex*)zero = malloc(sizeof(struct Complex));
-        *(struct Complex*)zero = Zero_C();
+        
+        (struct Complex*)zero = Zero_C();
         break;
     default:
         break;
@@ -187,6 +188,8 @@ void output_M(struct Matrix *M) {
     }
 }
 
+
+
 void free_M(struct Matrix* M){
     if (!M) {
         return;
@@ -195,7 +198,7 @@ void free_M(struct Matrix* M){
     {
         for (int j = 0; j < M->columns; j++)
         {
-            free(M->start[i][j]);
+            free(M->start[i][j], M->type);
         }
         free(M->start[i]);
     }
@@ -238,6 +241,7 @@ struct Matrix* mult_m(struct Matrix* M1, struct Matrix* M2) {
         return M1;
     }
     struct Matrix* res = Zero_M(M1->lines, M2->columns, M1->size, M1->type);
+    void* tmp_m = NULL, *tmp_s = NULL;
 
     for (int i = 0; i < res->lines; i++)
     {
@@ -245,7 +249,12 @@ struct Matrix* mult_m(struct Matrix* M1, struct Matrix* M2) {
         {
             for (int k = 0; k < M1->columns; k++)
             {
-                res->start[i][j] = sum(res->start[i][j], mult(M1->start[i][k], M2->start[k][j],res->type),res->type);
+                
+                tmp_m = mult(M1->start[i][k], M2->start[k][j], res->type);
+                tmp_s = sum(res->start[i][j], tmp_m,res->type);
+                free(tmp_m);
+                free(res->start[i][j]);
+                res->start[i][j] = tmp_s;
             }
         }
     }
