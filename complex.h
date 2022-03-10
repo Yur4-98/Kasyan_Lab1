@@ -10,6 +10,7 @@ struct Complex {
 Complex;
 */
 struct Complex* input_C();
+struct Complex* random_C();
 void output_C(struct Complex* c);
 struct Complex* Zero_C();
 float GetRe(struct Complex c);

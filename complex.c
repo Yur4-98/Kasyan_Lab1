@@ -1,4 +1,5 @@
-
+#include <time.h>
+#include <stdlib.h>
 struct Complex {
     float Re;
     float Im;
@@ -19,6 +20,14 @@ struct Complex *input_C() {
     printf("");
     scanf("%f",&(res->Re));
     scanf("%f",&(res->Im));
+    return res;
+}
+
+struct Complex* random_C() {
+    struct Complex* res = malloc(sizeof(struct Complex));
+    srand((unsigned int)time(NULL));
+    res->Re = ((float)rand() / (float)(10.0));
+    res->Im = ((float)rand() / (float)(10.0));
     return res;
 }
 

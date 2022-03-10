@@ -15,9 +15,9 @@ int main(void)
 {
 
   //  printf("Hello world! \n");
-    //dialog();
-    test_float();
-    test_complex();
+    dialog();
+    //test_float();
+    //test_complex();
 
     scanf("%*c");
     _CrtDumpMemoryLeaks();

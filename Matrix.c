@@ -1,5 +1,6 @@
 #include <stdio.h>
-
+#include <time.h>
+#include <stdlib.h>
 #include "complex.h"
 
 enum M_type
@@ -115,6 +116,81 @@ void* input_el( enum M_type type)
         break;
     }
     return (void*)res;
+}
+
+void *random_element(enum M_type type) {
+    void* res = NULL;
+    srand((unsigned int)time(NULL));
+    switch (type)
+    {
+    case F:
+        (float*)res = malloc(sizeof(float));
+        *(float*)res = ((float)rand() / (float)(10.0));
+
+        break;
+    case C:
+        (struct Complex*)res = random_C();
+        //output_C((struct Complex*)res);
+        break;
+    default:
+        break;
+    }
+    return (void*)res;
+}
+
+struct Matrix* random_m() {
+    int lines = 0, columns = 0, size = 0;
+    printf("Enter number of lines\n");
+    scanf("%d",&lines);
+    printf("Enter number of columns\n");
+    scanf("%d", &columns);
+    int ntype = 0;
+    printf("Enter type of element:\n1 - float\n2 - complex\n");
+    scanf("%d", &ntype);
+    enum M_type type = F;
+    float a = 5.0;
+    
+    switch (ntype)
+    {
+    case 1:
+        type = F;
+        size = sizeof(float);
+        break;
+    case 2:
+        type = C;
+        size = sizeof(struct Complex);
+        break;
+    default:
+        break;
+    }
+    struct Matrix* res = Zero_M(lines, columns, size, type);
+    switch (type)
+    {
+    case F:
+        for (int i = 0; i < lines; i++)
+        {
+            for (int j = 0; j < columns; j++)
+            {
+                free(res->start[i][j]);
+                ((float*)(res->start[i][j])) = random_element(type);;
+            }
+        }
+        break;
+    case C:
+        for (int i = 0; i < lines; i++)
+        {
+            for (int j = 0; j < columns; j++)
+            {
+                free(res->start[i][j]);
+                ((struct Complex*)(res->start[i][j])) = random_element(type);;
+            }
+        }
+        break;
+    default:
+        break;
+    }
+
+    return res;
 }
 
 struct Matrix* input_M() {

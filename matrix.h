@@ -22,6 +22,7 @@ struct Matrix {
 struct Matrix* Zero_M(int zero_lines, int zero_columns, int zero_size, enum M_type zero_type);
 //void* input_el( enum M_type type);
 struct Matrix* input_M();
+struct Matrix* random_m();
 //void output_el(void* element, enum M_type type);
 void output_M(struct Matrix* M);
 void free_M(struct Matrix* M);

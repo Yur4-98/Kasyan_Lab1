@@ -36,7 +36,8 @@ void dialog()
 				m2 = input_M();
 				break;
 			case 2:
-				//later
+				m1 = random_m();
+				m2 = random_m();
 				break;
 			default:
 				break;
